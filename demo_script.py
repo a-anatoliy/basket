@@ -67,4 +67,5 @@ def demonstrate_basket_3():
 if __name__ == "__main__":
     demonstrate_basket_1()
     demonstrate_basket_2()
-    d
+    demonstrate_basket_3()
+    
