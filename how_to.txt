@@ -33,6 +33,6 @@ At the end it sums up prices and returns them as a dictionary.
 Offers
 The library comes with two ready to use offers:
 
-PercentageOffer - calculates discount based on passed percentage in the constructor.
-EveryXIsFreeOffer - gives next product free if X were bought.
+Percentage - calculates discount based on passed percentage in the constructor.
+EveryXIsFree - gives next product free if X were bought.
 In order to create custom offer inherit from BaseOffer abstract class. calculate_discount method is mandatory and it accepts price and quantity as parameters.

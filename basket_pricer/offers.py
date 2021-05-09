@@ -12,7 +12,7 @@ class BaseOffer(ABC):
 
 
 @dataclass
-class PercentageOffer(BaseOffer):
+class Percentage(BaseOffer):
     """ Offer which calculates percentage discount """
 
     discount_percent: Decimal
@@ -29,7 +29,7 @@ class PercentageOffer(BaseOffer):
 
 
 @dataclass
-class EveryXIsFreeOffer(BaseOffer):
+class EveryXIsFree(BaseOffer):
     """ Offer where after buying X product items next is free """
 
     one_free_after: int

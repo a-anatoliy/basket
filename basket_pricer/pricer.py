@@ -3,8 +3,8 @@ from decimal import Decimal, ROUND_HALF_UP
 from typing import Dict, List
 
 from basket_pricer.exceptions import NegativeBasketPriceException
-from basket_pricer.catalogues_providers import BaseCatalogueProvider
-from basket_pricer.offer_providers import BaseOfferProvider
+from basket_pricer.catalogue import BaseCatalogueProvider
+from basket_pricer.offer import BaseOfferProvider
 
 
 @dataclass

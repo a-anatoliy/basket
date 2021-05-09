@@ -1,6 +1,6 @@
 from decimal import Decimal
 
-from basket_pricer.catalogues_providers import CatalogueProvider
+from basket_pricer.catalogue import CatalogueProvider
 
 
 def test_catalogue_provider_gets_price_for_sku():

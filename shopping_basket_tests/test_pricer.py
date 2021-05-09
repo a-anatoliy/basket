@@ -4,9 +4,9 @@ from decimal import Decimal
 import pytest
 
 from basket_pricer.exceptions import NegativeBasketPriceException
-from basket_pricer.catalogues_providers import CatalogueProvider
-from basket_pricer.offer_providers import OfferProvider
-from basket_pricer.offers import PercentageOffer
+from basket_pricer.catalogue import CatalogueProvider
+from basket_pricer.offer import OfferProvider
+from basket_pricer.offers import Percentage
 from basket_pricer.pricer import BasketPricer
 
 
@@ -79,7 +79,7 @@ def test_pricer_calculates_sub_total_for_multiple_products_in_basket():
 
 def test_pricer_calculates_percentage_discount_for_product():
     catalogue_provider = CatalogueProvider({"APPLE": Decimal("5")})
-    offer_provider = OfferProvider({"APPLE": [PercentageOffer(Decimal("10"))]})
+    offer_provider = OfferProvider({"APPLE": [Percentage(Decimal("10"))]})
     basket = {"APPLE": 1}
     pricer = BasketPricer(catalogue_provider, offer_provider)
     prices = pricer.calculate_basket_prices(basket)
@@ -90,7 +90,7 @@ def test_pricer_calculates_chooses_highest_discount():
     catalogue_provider = CatalogueProvider({"APPLE": Decimal("5")})
     offer_provider = OfferProvider(
         {
-            "APPLE": [PercentageOffer(Decimal("10")), PercentageOffer(Decimal("15"))],
+            "APPLE": [Percentage(Decimal("10")), Percentage(Decimal("15"))],
         }
     )
     basket = {"APPLE": 1}
@@ -112,7 +112,7 @@ def test_pricer_calculates_correctly_total_value():
     catalogue_provider = CatalogueProvider(
         {"APPLE": Decimal("5"), "POTATO": Decimal("2")}
     )
-    offer_provider = OfferProvider({"APPLE": [PercentageOffer(Decimal("20"))]})
+    offer_provider = OfferProvider({"APPLE": [Percentage(Decimal("20"))]})
     basket = {"APPLE": 4, "POTATO": 2, "NOT_IN_CATALOGUE_PRODUCT": 3}
     pricer = BasketPricer(catalogue_provider, offer_provider)
     assert pricer.calculate_basket_prices(basket) == {
