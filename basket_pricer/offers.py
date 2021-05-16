@@ -13,31 +13,27 @@ class BaseOffer(ABC):
 
 @dataclass
 class Percentage(BaseOffer):
-    """ Offer which calculates percentage discount """
-
+    # Offer calculates percentage discount
+    NotNegative = 'Could not be negative!'
     discount_percent: Decimal
 
     def calculate_discount(self, price: Decimal, quantity: int) -> Decimal:
         if self.discount_percent < Decimal("0"):
-            raise OfferConfigurationException("Discount percentage cannot be negative")
+            raise OfferConfigurationException(NotNegative)
         if self.discount_percent > Decimal("100"):
-            raise OfferConfigurationException(
-                "Discount percentage cannot be higher than 100%"
-            )
+            raise OfferConfigurationException('No more than 100%')
 
         return (price * quantity * self.discount_percent) / 100
 
 
 @dataclass
 class EveryXIsFree(BaseOffer):
-    """ Offer where after buying X product items next is free """
+    # Offer where after buying X product items next is free
 
     one_free_after: int
 
     def calculate_discount(self, price: Decimal, quantity: int) -> Decimal:
         if self.one_free_after < 0:
-            raise OfferConfigurationException(
-                "One free after X bought value cannot be negative"
-            )
+            raise OfferConfigurationException(NotNegative)
         number_of_free_products = quantity // (self.one_free_after + 1)
         return number_of_free_products * price

@@ -13,7 +13,8 @@ class BaseOfferProvider(ABC):
 
 @dataclass
 class OfferProvider(BaseOfferProvider):
-    """ Offers provider based on dictionary with SKU-list of offers mapping """
+    # Offers provider
+    # based on dictionary and SKU-list of offers mapping
 
     sku_offers: Dict[str, List[BaseOffer]]
 
